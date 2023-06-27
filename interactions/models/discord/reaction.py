@@ -78,7 +78,7 @@ class Reaction(ClientObject):
     _channel_id: "Snowflake_Type" = attrs.field(repr=False, converter=to_snowflake)
     _message_id: "Snowflake_Type" = attrs.field(repr=False, converter=to_snowflake)
 
-    def users(self, limit: int = 0, after: "Snowflake_Type" = None) -> ReactionUsers:
+    def users(self, limit: int = 0, after: "Snowflake_Type | None" = None) -> ReactionUsers:
         """Users who reacted using this emoji."""
         return ReactionUsers(self, limit, after)
 

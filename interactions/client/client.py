@@ -267,7 +267,7 @@ class Client(
     def __init__(
         self,
         *,
-        activity: Union[Activity, str] = None,
+        activity: Union[Activity, str] | None = None,
         auto_defer: Absent[Union[AutoDefer, bool]] = MISSING,
         autocomplete_context: Type[BaseContext] = AutocompleteContext,
         basic_logging: bool = False,
@@ -1102,7 +1102,7 @@ class Client(
 
     async def wait_for_component(
         self,
-        messages: Union[Message, int, list] = None,
+        messages: Union[Message, int, list] | None = None,
         components: Optional[
             Union[
                 List[List[Union["BaseComponent", dict]]],
@@ -1111,7 +1111,7 @@ class Client(
                 dict,
             ]
         ] = None,
-        check: Absent[Optional[Union[Callable[..., bool], Callable[..., Awaitable[bool]]]]] = None,
+        check: Absent[Optional[Union[Callable[..., bool], Callable[..., Awaitable[bool]]]]] | None = None,
         timeout: Optional[float] = None,
     ) -> "events.Component":
         """
@@ -1627,7 +1627,7 @@ class Client(
         self._cache_sync_response(sync_response, cmd_scope)
 
     def get_application_cmd_by_id(
-        self, cmd_id: "Snowflake_Type", *, scope: "Snowflake_Type" = None
+        self, cmd_id: "Snowflake_Type", *, scope: "Snowflake_Type | None" = None
     ) -> Optional[InteractionCommand]:
         """
         Get a application command from the internal cache by its ID.

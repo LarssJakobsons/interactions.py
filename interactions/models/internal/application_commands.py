@@ -717,7 +717,7 @@ class SlashCommand(InteractionCommand):
         return wrapper
 
     def group(
-        self, name: str = None, description: str = "No Description Set", inherit_checks: bool = True
+        self, name: str | None = None, description: str = "No Description Set", inherit_checks: bool = True
     ) -> "SlashCommand":
         return SlashCommand(
             name=self.name,
@@ -733,10 +733,10 @@ class SlashCommand(InteractionCommand):
     def subcommand(
         self,
         sub_cmd_name: Absent[LocalisedName | str] = MISSING,
-        group_name: LocalisedName | str = None,
+        group_name: LocalisedName | str | None = None,
         sub_cmd_description: Absent[LocalisedDesc | str] = MISSING,
         group_description: Absent[LocalisedDesc | str] = MISSING,
-        options: List[Union[SlashCommandOption, Dict]] = None,
+        options: List[Union[SlashCommandOption, Dict]] | None = None,
         nsfw: bool = False,
         inherit_checks: bool = True,
     ) -> Callable[..., "SlashCommand"]:
@@ -878,8 +878,8 @@ def slash_command(
     options: Optional[List[Union[SlashCommandOption, Dict]]] = None,
     default_member_permissions: Optional["Permissions"] = None,
     dm_permission: bool = True,
-    sub_cmd_name: str | LocalisedName = None,
-    group_name: str | LocalisedName = None,
+    sub_cmd_name: str | LocalisedName | None = None,
+    group_name: str | LocalisedName | None = None,
     sub_cmd_description: str | LocalisedDesc = "No Description Set",
     group_description: str | LocalisedDesc = "No Description Set",
     nsfw: bool = False,
@@ -961,8 +961,8 @@ def subcommand(
     base_dm_permission: bool = True,
     subcommand_group_description: Optional[str | LocalisedDesc] = None,
     sub_group_desc: Optional[str | LocalisedDesc] = None,
-    scopes: List["Snowflake_Type"] = None,
-    options: List[dict] = None,
+    scopes: List["Snowflake_Type"] | None = None,
+    options: List[dict] | None = None,
     nsfw: bool = False,
 ) -> Callable[[AsyncCallable], SlashCommand]:
     """
@@ -1190,7 +1190,7 @@ def slash_option(
     opt_type: Union[OptionType, int],
     required: bool = False,
     autocomplete: bool = False,
-    choices: List[Union[SlashCommandChoice, dict]] = None,
+    choices: List[Union[SlashCommandChoice, dict]] | None = None,
     channel_types: Optional[list[Union[ChannelType, int]]] = None,
     min_value: Optional[float] = None,
     max_value: Optional[float] = None,

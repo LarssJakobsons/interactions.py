@@ -921,7 +921,7 @@ class Guild(BaseGuild):
         permission_overwrites: Absent[
             Union[dict, "models.PermissionOverwrite", List[Union[dict, "models.PermissionOverwrite"]]]
         ] = MISSING,
-        category: Union[Snowflake_Type, "models.GuildCategory"] = None,
+        category: Union[Snowflake_Type, "models.GuildCategory"] | None = None,
         nsfw: bool = False,
         bitrate: int = 64000,
         user_limit: int = 0,
@@ -975,7 +975,7 @@ class Guild(BaseGuild):
         permission_overwrites: Absent[
             Union[dict, "models.PermissionOverwrite", List[Union[dict, "models.PermissionOverwrite"]]]
         ] = MISSING,
-        category: Union[Snowflake_Type, "models.GuildCategory"] = None,
+        category: Union[Snowflake_Type, "models.GuildCategory"] | None = None,
         nsfw: bool = False,
         rate_limit_per_user: int = 0,
         reason: Absent[Optional[str]] = MISSING,
@@ -1017,7 +1017,7 @@ class Guild(BaseGuild):
         permission_overwrites: Absent[
             Union[dict, "models.PermissionOverwrite", List[Union[dict, "models.PermissionOverwrite"]]]
         ] = MISSING,
-        category: Union[Snowflake_Type, "models.GuildCategory"] = None,
+        category: Union[Snowflake_Type, "models.GuildCategory"] | None = None,
         nsfw: bool = False,
         rate_limit_per_user: int = 0,
         default_reaction_emoji: Absent[Union[dict, "models.PartialEmoji", "models.DefaultReaction", str]] = MISSING,
@@ -1068,7 +1068,7 @@ class Guild(BaseGuild):
         permission_overwrites: Absent[
             Union[dict, "models.PermissionOverwrite", List[Union[dict, "models.PermissionOverwrite"]]]
         ] = MISSING,
-        category: Union[Snowflake_Type, "models.GuildCategory"] = None,
+        category: Union[Snowflake_Type, "models.GuildCategory"] | None = None,
         nsfw: bool = False,
         reason: Absent[Optional[str]] = MISSING,
     ) -> "models.GuildNews":
@@ -1107,7 +1107,7 @@ class Guild(BaseGuild):
         permission_overwrites: Absent[
             Union[dict, "models.PermissionOverwrite", List[Union[dict, "models.PermissionOverwrite"]]]
         ] = MISSING,
-        category: Union[Snowflake_Type, "models.GuildCategory"] = None,
+        category: Union[Snowflake_Type, "models.GuildCategory"] | None = None,
         nsfw: bool = False,
         bitrate: int = 64000,
         user_limit: int = 0,
@@ -1217,7 +1217,7 @@ class Guild(BaseGuild):
         )
 
     async def delete_channel(
-        self, channel: Union["models.TYPE_GUILD_CHANNEL", Snowflake_Type], reason: str = None
+        self, channel: Union["models.TYPE_GUILD_CHANNEL", Snowflake_Type], reason: str | None = None
     ) -> None:
         """
         Delete the given channel, can handle either a snowflake or channel object.
@@ -1871,7 +1871,7 @@ class Guild(BaseGuild):
         """
         await self._client.http.remove_guild_ban(self.id, to_snowflake(user), reason=reason)
 
-    async def fetch_widget_image(self, style: str = None) -> str:
+    async def fetch_widget_image(self, style: str | None = None) -> str:
         """
         Fetch a guilds widget image.
 
@@ -2352,10 +2352,10 @@ class AuditLogHistory(AsyncIterator):
     def __init__(
         self,
         guild: "Guild",
-        user_id: Snowflake_Type = None,
-        action_type: "AuditLogEventType" = None,
-        before: Snowflake_Type = None,
-        after: Snowflake_Type = None,
+        user_id: Snowflake_Type | None = None,
+        action_type: "AuditLogEventType | None" = None,
+        before: Snowflake_Type | None = None,
+        after: Snowflake_Type | None = None,
         limit: int = 50,
     ) -> None:
         self.guild: "Guild" = guild
